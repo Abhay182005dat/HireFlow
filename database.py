@@ -1,8 +1,8 @@
 import sqlite3
 
 def setup_database():
-    conn  = sqlite3.connect("recruitment_memory.db")
-    cursor = sqlite3.connect("recruitment_memory.db").cursor
+    conn  = sqlite3.connect("HireFlow.db")
+    cursor = sqlite3.connect("HireFlow.db").cursor()
 
     # Job descriptions Table
     cursor.execute(""" 
@@ -53,5 +53,9 @@ def setup_database():
 
     conn.commit()
     conn.close()
+    print("Database Setup Complete")
+
+if __name__ == "__main__" :
+    setup_database()
 
 
