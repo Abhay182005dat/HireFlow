@@ -1,8 +1,8 @@
 import sqlite3
 from langchain.llms import Ollama
 from langchain.prompts import PromptTemplate
-
-db_path = "HireFlow.db"
+from database import setup_database
+setup_database()
 
 # Initialise the model
 llm = Ollama(model = "mistral")
@@ -28,7 +28,7 @@ def summarize_jd(job_description):
     return summary
 
 def store_summary(job_id , summary):
-    conn = sqlite3.connect(db_path)
+    conn = sqlite3.connect('HireFlow.db')
     cursor = conn.cursor()
 
     cursor.execute(""" INSERT INTO job_summaries(job_id , summary) VALUES(? , ?)""" , (job_id,summary))
